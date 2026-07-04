@@ -113,12 +113,12 @@ advanced_stage_options: &advanced_stage_options
   end-lambda: 0.7401424425915776
 
 trainer: &trainer
-  owner: TonyCongqianWang
-  sha: 6cd6ed4e6de7a6bb260e60f1cde02464b3049212
+  owner: official-stockfish
+  sha: b8512291deb4cd18afa67003bb6bc53dd522cbf0
 
 reference_code: &reference_code
-  owner: TonyCongqianWang
-  sha: 82d79197e1abd7994571a16dc1f4e41031645529
+  owner: official-stockfish
+  sha: d5bbc6b67d3184fc39fa87a18596e77e92af990c
   target: profile-build
 
 testing_code: &testing_code
@@ -161,7 +161,7 @@ testing:
       tc: 10+0.1
   reference:
     code: *reference_code
-  steps: 4
+  steps: last
   testing:
     code: *testing_code
 
