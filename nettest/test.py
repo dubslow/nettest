@@ -19,7 +19,7 @@ def ensure_matecheck():
     max_retries = 3
     retry_delay = 30
 
-    sha = "55431e9804cb6d2ecca5e61337f0b05c8793d72c"
+    sha = "b2d37d2eb290d638fce91e180454615c1eab72f8"
     owner = "vondele"
     repo = github_repo_url(owner, "matetrack")
     base_dir = Path.cwd() / f"scratch/packages/matetrack/{sha}"
@@ -528,11 +528,22 @@ def run_cross_check_eval(environment, test, testing_sha, stockfish_testing):
     execute("Run cross check eval from .ckpt ", cmd_ckpt, nnue_pytorch_dir, False)
 
 
-def run_matecheck(matecheck, classic_epd, stockfish_reference, stockfish_testing):
+def run_matecheck(
+    matecheck, classic_epd, testing_sha, stockfish_reference, stockfish_testing
+):
     assert matecheck.exists(), f"{matecheck} does not exist"
     assert classic_epd.exists(), f"{classic_epd} does not exist"
     assert stockfish_reference.exists(), f"{stockfish_reference} does not exist"
     assert stockfish_testing.exists(), f"{stockfish_testing} does not exist"
+
+    # net to be tested
+    final_yaml_file = Path.cwd() / "scratch" / testing_sha / "final.yaml"
+    assert final_yaml_file.exists(), f"{final_yaml_file} does not exist"
+    with open(final_yaml_file) as f:
+        final_config = yaml.safe_load(f)
+    short_nnue = final_config["short_nnue"]
+    std_nnue = final_config["std_nnue"]
+    assert Path(std_nnue).exists(), f"{std_nnue} does not exist"
 
     cmd = [
         "python",
@@ -546,7 +557,7 @@ def run_matecheck(matecheck, classic_epd, stockfish_reference, stockfish_testing
         f"{classic_epd}",
     ]
     execute(
-        "Run matecheck on reference engine for the classic_epd",
+        f"Run matecheck on reference engine for {classic_epd.name}",
         cmd,
         matecheck.parent,
         False,
@@ -562,9 +573,11 @@ def run_matecheck(matecheck, classic_epd, stockfish_reference, stockfish_testing
         f"{stockfish_testing}",
         "--epdFile",
         f"{classic_epd}",
+        "--evalFile",
+        f"{std_nnue}",
     ]
     execute(
-        "Run matecheck on testing engine for the classic_epd",
+        f"Run matecheck on testing engine with {short_nnue} for {classic_epd.name}",
         cmd,
         matecheck.parent,
         False,
@@ -588,7 +601,9 @@ def run_test(environment, test_config_sha, testing_sha):
 
     run_cross_check_eval(environment, test, testing_sha, stockfish_testing)
 
-    run_matecheck(matecheck, classic_epd, stockfish_reference, stockfish_testing)
+    run_matecheck(
+        matecheck, classic_epd, testing_sha, stockfish_reference, stockfish_testing
+    )
 
     winning_net, nElo = run_fastchess(
         environment,
