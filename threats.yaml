@@ -161,7 +161,7 @@ testing:
       tc: 10+0.1
   reference:
     code: *reference_code
-  steps: 4
+  steps: all
   testing:
     code: *testing_code
 
