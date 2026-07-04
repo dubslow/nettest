@@ -11,6 +11,85 @@ import os
 import random
 
 
+def ensure_matecheck():
+    """
+    Install matecheck script
+    """
+
+    max_retries = 3
+    retry_delay = 30
+
+    sha = "55431e9804cb6d2ecca5e61337f0b05c8793d72c"
+    owner = "vondele"
+    repo = github_repo_url(owner, "matetrack")
+    base_dir = Path.cwd() / f"scratch/packages/matetrack/{sha}"
+
+    matecheck = base_dir / "matetrack" / "matecheck.py"
+    classic_epd = base_dir / "matetrack" / "classic280.epd"
+
+    if matecheck.exists() and classic_epd.exists():
+        return matecheck, classic_epd
+
+    for attempt in range(1, max_retries + 1):
+        unique_suffix = str(uuid.uuid4())
+        temp_build_dir = base_dir.parent / f"{base_dir.name}_build_{unique_suffix}"
+        temp_matetrack_dir = temp_build_dir / "matetrack"
+
+        try:
+            temp_build_dir.mkdir(parents=True, exist_ok=True)
+
+            execute(
+                f"[attempt {attempt}] init repo",
+                ["git", "init"],
+                temp_matetrack_dir,
+                False,
+            )
+
+            execute(
+                f"[attempt {attempt}] add remote",
+                ["git", "remote", "add", "origin", repo],
+                temp_matetrack_dir,
+                False,
+            )
+
+            execute(
+                f"[attempt {attempt}] fetch sha {sha}",
+                ["git", "fetch", "--depth", "1", "origin", sha],
+                temp_matetrack_dir,
+                False,
+            )
+
+            execute(
+                f"[attempt {attempt}] checkout sha {sha}",
+                ["git", "checkout", "--detach", sha],
+                temp_matetrack_dir,
+                False,
+            )
+
+            # Try to atomically move the build to the target location
+            try:
+                temp_build_dir.rename(base_dir)
+            except Exception:
+                shutil.rmtree(temp_build_dir, ignore_errors=True)
+
+            assert matecheck.exists(), "Matecheck should, but does not, exist."
+            assert classic_epd.exists(), "Classic_epd should, but does not, exist."
+
+            return matecheck, classic_epd
+
+        except Exception as e:
+            print(f"⚠️ Attempt {attempt} failed: {e}")
+            shutil.rmtree(temp_build_dir, ignore_errors=True)
+            if attempt < max_retries:
+                print(f"🔁 Retrying after {retry_delay} seconds...")
+                time.sleep(retry_delay)
+            else:
+                print("❌ All attempts to install matecheck failed.")
+                raise
+
+    return None, None
+
+
 def ensure_fastchess(fastchess):
     """
     Install the specified fastchess version
@@ -449,6 +528,49 @@ def run_cross_check_eval(environment, test, testing_sha, stockfish_testing):
     execute("Run cross check eval from .ckpt ", cmd_ckpt, nnue_pytorch_dir, False)
 
 
+def run_matecheck(matecheck, classic_epd, stockfish_reference, stockfish_testing):
+    assert matecheck.exists(), f"{matecheck} does not exist"
+    assert classic_epd.exists(), f"{classic_epd} does not exist"
+    assert stockfish_reference.exists(), f"{stockfish_reference} does not exist"
+    assert stockfish_testing.exists(), f"{stockfish_testing} does not exist"
+
+    cmd = [
+        "python",
+        "-u",
+        f"{matecheck}",
+        "--nodes",
+        "1000000",
+        "--engine",
+        f"{stockfish_reference}",
+        "--epdFile",
+        f"{classic_epd}",
+    ]
+    execute(
+        "Run matecheck on reference engine for the classic_epd",
+        cmd,
+        matecheck.parent,
+        False,
+    )
+
+    cmd = [
+        "python",
+        "-u",
+        f"{matecheck}",
+        "--nodes",
+        "1000000",
+        "--engine",
+        f"{stockfish_testing}",
+        "--epdFile",
+        f"{classic_epd}",
+    ]
+    execute(
+        "Run matecheck on testing engine for the classic_epd",
+        cmd,
+        matecheck.parent,
+        False,
+    )
+
+
 def run_test(environment, test_config_sha, testing_sha):
     """
     Driver to run the test
@@ -462,8 +584,11 @@ def run_test(environment, test_config_sha, testing_sha):
     fastchess = ensure_fastchess(test["fastchess"])
     stockfish_reference = ensure_stockfish("reference", test)
     stockfish_testing = ensure_stockfish("testing", test)
+    matecheck, classic_epd = ensure_matecheck()
 
     run_cross_check_eval(environment, test, testing_sha, stockfish_testing)
+
+    run_matecheck(matecheck, classic_epd, stockfish_reference, stockfish_testing)
 
     winning_net, nElo = run_fastchess(
         environment,
