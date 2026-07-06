@@ -190,7 +190,7 @@ training:
         other_options:
           <<: [*common_run_options, *advanced_stage_options]
           one-cycle-steps: 3509800
-          lr: "0.9e-3"
+          lr: "0.8e-3"
 
     # Stage 3
     - <<: *common_step
@@ -201,7 +201,7 @@ training:
         other_options:
           <<: [*common_run_options, *advanced_stage_options]
           one-cycle-steps: 3509800
-          lr: "0.9e-3"
+          lr: "0.8e-3"
 
     # Stage 4
     - <<: *common_step
@@ -213,7 +213,7 @@ training:
         other_options:
           <<: [*common_run_options, *advanced_stage_options]
           one-cycle-steps: 3509800
-          lr: "0.9e-3"
+          lr: "0.8e-3"
           batch_size: 65536
           start-lambda: 1
           end-lambda: 1
