@@ -141,16 +141,17 @@ def run_trainer(environment, current_sha, previous_sha, run, nnue_pytorch_dir):
     data_dir = Path.cwd() / "data"
 
     # first check all binpacks are available in non-compressed form
-    for binpack in run["binpacks"]:
-        full_path = data_dir / binpack
-        # check if it is available in compressed form, and uncompress as needed
-        if not full_path.exists():
-            full_path_zst = Path(str(full_path) + ".zst")
-            if full_path_zst.exists():
-                cmd = ["zstd", "-d", str(full_path_zst), "-o", str(full_path)]
-                execute("Uncompress binpack.zst", cmd, nnue_pytorch_dir, False)
-            else:
-                assert False, f"The following binpack could not be found: {binpack}"
+    if "binpacks" in run:
+        for binpack in run["binpacks"]:
+            full_path = data_dir / binpack
+            # check if it is available in compressed form, and uncompress as needed
+            if not full_path.exists():
+                full_path_zst = Path(str(full_path) + ".zst")
+                if full_path_zst.exists():
+                    cmd = ["zstd", "-d", str(full_path_zst), "-o", str(full_path)]
+                    execute("Uncompress binpack.zst", cmd, nnue_pytorch_dir, False)
+                else:
+                    assert False, f"The following binpack could not be found: {binpack}"
 
     # some architecture specific options
     run_env = os.environ.copy()
