@@ -76,7 +76,7 @@ training:
     - <<: *common_step
       run:
         resume: none
-        max_epochs: 30
+        max_epochs: 400
         repetitions: 1
         other_options:
           <<: *common_run_options
