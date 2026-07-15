@@ -174,8 +174,9 @@ def run_trainer(environment, current_sha, previous_sha, run, nnue_pytorch_dir):
     else:
         cmd = ["python", "-u", "train.py"]
 
-    for binpack in run["binpacks"]:
-        cmd.append(str(data_dir / binpack))
+    if "binpacks" in run:
+        for binpack in run["binpacks"]:
+            cmd.append(str(data_dir / binpack))
 
     if "train" in environment and "threads" in environment["train"]:
         num_threads = environment["train"]["threads"]
