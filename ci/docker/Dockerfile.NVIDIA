@@ -36,7 +36,7 @@ ENV CXXFLAGS="-fPIC"
 ENV EXTRA_CFLAGS="-fPIC"
 ENV EXTRA_CXXFLAGS="-fPIC"
 ENV TERARKDBROOT=/workspace/terarkdb/
-ENV CHESSDB_PATH=/workspace/cdb/chess-20251115/data
+ENV CHESSDB_PATH=/workspace/cdb/chess-20260702/data
 
 ARG NUM_PROCS
 

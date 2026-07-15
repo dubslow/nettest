@@ -1,0 +1,82 @@
+model_config: &model_config
+  features: Full_Threats+HalfKAv2_hm^
+  l1: 1024
+  l2: 32
+
+optimize_flags: &optimize_flags
+  <<: *model_config
+  ft-optimize-count: 100000
+  ft-optimize: true
+  ft-compression: leb128
+
+checkpoint2nnue_options: &checkpoint2nnue_options
+  <<: *model_config
+  ft-compression: leb128
+
+common_run_options: &common_run_options
+  epoch-size: 134217728
+  validation-size: 268435456
+  check-val-every-n-epoch: 50
+  batch-size: 131072
+  one-cycle-steps: 4096000
+  lr: "0.9e-3"
+  cdb-path: "/workspace/cdb/chess-20260702/data"
+  <<: *model_config
+
+trainer: &trainer
+  owner: vondele
+  sha: fe957388472eaa655094af0e95efe30c98a2e202
+
+reference_code: &reference_code
+  owner: official-stockfish
+  sha: d5bbc6b67d3184fc39fa87a18596e77e92af990c
+  target: profile-build
+
+testing_code: &testing_code
+  <<: *reference_code
+
+# --- Grouped Structure Anchors for Redundancy Reduction ---
+common_convert: &common_convert
+  binpack: official-stockfish/master-binpacks/fishpack32.binpack
+  checkpoint2nnue: *checkpoint2nnue_options
+  optimize: *optimize_flags
+
+common_step: &common_step
+  convert: *common_convert
+  trainer: *trainer
+
+testing:
+  crosscheck:
+    trainer: *trainer
+    binpack: official-stockfish/master-binpacks/fishpack32.binpack
+    other_options:
+      <<: *model_config
+      count: 20000
+  fastchess:
+    code:
+      owner: Disservin
+      sha: b9008d08b9f375ef7810dc55da6ff223a3992cc2
+    options:
+      hash: 16
+      max_rounds: 30000
+      tc: 10+0.1
+    sprt:
+      nElo_interval_midpoint: 0.0
+      nElo_interval_width: 2
+  reference:
+    code: *reference_code
+  steps: last
+  testing:
+    code: *testing_code
+
+
+training:
+  steps:
+    # Pretraining
+    - <<: *common_step
+      run:
+        resume: none
+        max_epochs: 30
+        repetitions: 1
+        other_options:
+          <<: *common_run_options
