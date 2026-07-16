@@ -65,7 +65,7 @@ common_run_options: &common_run_options
   one-cycle-steps: 4096000
   lr: "0.9e-3"
   cdb-path: "/workspace/cdb/chess-20260702/data"
-  cdb-fraction: 0.3
+  cdb-fraction: 1.0
   <<: *model_config
 
 trainer: &trainer
@@ -103,11 +103,8 @@ testing:
       sha: b9008d08b9f375ef7810dc55da6ff223a3992cc2
     options:
       hash: 16
-      max_rounds: 30000
+      max_rounds: 5000
       tc: 10+0.1
-    sprt:
-      nElo_interval_midpoint: 0.0
-      nElo_interval_width: 2
   reference:
     code: *reference_code
   steps: last
