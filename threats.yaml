@@ -193,6 +193,6 @@ training:
           jitter-lambda-sample: 0.0
           jitter-lambda-batch: 0.0
           jitter-decay-lambda-batch: 0.0
-          tb-remap-base: 2000.0
-          tb-remap-scale: 2000.0
+          tb-remap-base: 4000.0
+          tb-remap-scale: 4000.0
           tb-remap-decay: 0.9
