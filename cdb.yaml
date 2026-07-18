@@ -1,46 +1,6 @@
+
 training_binpacks: &training_binpacks
-  - vondele/from_kaggle_2_relabel/T60T70wIsRightFarseerT60T74T75T76.split_0.relabel-BT4-tf13tune.binpack
-  - vondele/from_kaggle_2_relabel/T60T70wIsRightFarseerT60T74T75T76.split_1.relabel-BT4-tf13tune.binpack
-  - vondele/from_kaggle_2_relabel/T60T70wIsRightFarseerT60T74T75T76.split_2.relabel-BT4-tf13tune.binpack
-  - vondele/from_kaggle_2_relabel/T60T70wIsRightFarseerT60T74T75T76.split_3.relabel-BT4-tf13tune.binpack
-  - vondele/from_kaggle_2_relabel/T60T70wIsRightFarseerT60T74T75T76.split_4.relabel-BT4-tf13tune.binpack
-  - vondele/master-binpacks_relabel/nodes5000pv2_UHO.relabel-BT4-tf13tune.binpack
-  - vondele/master-binpacks_relabel/wrongIsRight_nodes5000pv2.relabel-BT4-tf13tune.binpack
-  - vondele/master-binpacks_relabel/multinet_pv-2_diff-100_nodes-5000.relabel-BT4-tf13tune.binpack
-  - vondele/master-binpacks_relabel/dfrc_n5000.relabel-BT4-tf13tune.binpack
-  - vondele/from_kaggle_1_relabel/leela96-filt-v2.min.split_0.relabel-BT4-tf13tune.binpack
-  - vondele/from_kaggle_1_relabel/leela96-filt-v2.min.split_1.relabel-BT4-tf13tune.binpack
-  - vondele/from_kaggle_1_relabel/leela96-filt-v2.min.split_2.relabel-BT4-tf13tune.binpack
-  - vondele/from_kaggle_1_relabel/leela96-filt-v2.min.split_3.relabel-BT4-tf13tune.binpack
-  - vondele/from_kaggle_1_relabel/leela96-filt-v2.min.split_4.relabel-BT4-tf13tune.binpack
-  - vondele/linrock_relabel_1/test60-2021-11-nov-12tb7p.min-v2.relabel-BT4-tf13tune.binpack
-  - vondele/linrock_relabel_1/test60-2021-12-dec-12tb7p.min-v2.relabel-BT4-tf13tune.binpack
-  - vondele/linrock_relabel_1/test77-2021-12-dec-16tb7p.v6-dd.min.relabel-BT4-tf13tune.binpack
-  - vondele/linrock_relabel_1/test78-2022-01-to-05-jantomay-16tb7p.v6-dd.min.relabel-BT4-tf13tune.binpack
-  - vondele/linrock_relabel_1/test79-2022-04-apr-16tb7p.v6-dd.min.relabel-BT4-tf13tune.binpack
-  - vondele/linrock_relabel_1/test79-2022-05-may-16tb7p.v6-dd.min.relabel-BT4-tf13tune.binpack
-  - vondele/linrock_relabel_1/test78-2022-06-to-09-juntosep-16tb7p.v6-dd.min.relabel-BT4-tf13tune.binpack
-  - vondele/linrock_relabel_1/test80-2022-06-jun-16tb7p.v6-dd.min.relabel-BT4-tf13tune.binpack
-  - vondele/linrock_relabel_1/test80-2022-07-jul-16tb7p.v6-dd.min.relabel-BT4-tf13tune.binpack
-  - vondele/linrock_relabel_1/test80-2022-08-aug-16tb7p.v6-dd.min.relabel-BT4-tf13tune.binpack
-  - vondele/linrock_relabel_1/test80-2022-09-sep-16tb7p.v6-dd.min.relabel-BT4-tf13tune.binpack
-  - vondele/linrock_relabel_1/test80-2022-10-oct-16tb7p.v6-dd.relabel-BT4-tf13tune.binpack
-  - vondele/linrock_relabel_1/test80-2022-11-nov-16tb7p.v6-dd.min.relabel-BT4-tf13tune.binpack
-  - vondele/linrock_relabel_2/test80-2023-01-jan-16tb7p.v6-sk20.min.relabel-BT4-tf13tune.binpack
-  - vondele/linrock_relabel_2/test80-2023-02-feb-16tb7p.v6-dd.min.relabel-BT4-tf13tune.binpack
-  - vondele/linrock_relabel_2/test80-2023-03-mar-2tb7p.v6-sk16.min.relabel-BT4-tf13tune.binpack
-  - vondele/linrock_relabel_2/test80-2023-04-apr-2tb7p.v6-sk16.min.relabel-BT4-tf13tune.binpack
-  - vondele/linrock_relabel_2/test80-2023-05-may-2tb7p.v6.min.relabel-BT4-tf13tune.binpack
-  - vondele/linrock_relabel_2/test80-2023-06-jun-2tb7p.min-v2.v6.relabel-BT4-tf13tune.binpack
-  - vondele/linrock_relabel_2/test80-2023-07-jul-2tb7p.min-v2.v6.relabel-BT4-tf13tune.binpack
-  - vondele/linrock_relabel_2/test80-2023-08-aug-2tb7p.v6.min.relabel-BT4-tf13tune.binpack
-  - vondele/linrock_relabel_2/test80-2023-09-sep-2tb7p.min-v2.v6.relabel-BT4-tf13tune.binpack
-  - vondele/linrock_relabel_2/test80-2023-10-oct-2tb7p.min-v2.v6.relabel-BT4-tf13tune.binpack
-  - vondele/linrock_relabel_2/test80-2023-11-nov-2tb7p.min-v2.v6.relabel-BT4-tf13tune.binpack
-  - vondele/linrock_relabel_2/test80-2023-12-dec-2tb7p.min-v2.v6.relabel-BT4-tf13tune.binpack
-  - vondele/linrock_relabel_2/test80-2023-12-dec-2tb7p.min-v2.v6.relabel-BT4-tf13tune.binpack
-  - xushawn/test80-bt4-relabel/test80-2024-01-jan-2tb7p.min-v2.v6.relabel.binpack
-  - xushawn/test80-bt4-relabel/test80-2024-02-feb-2tb7p.min-v2.v6.relabel.binpack
+  - vondele/rescored/tb5dtm.binpack
 
 model_config: &model_config
   features: Full_Threats+HalfKAv2_hm^
@@ -59,13 +19,21 @@ checkpoint2nnue_options: &checkpoint2nnue_options
 
 common_run_options: &common_run_options
   epoch-size: 134217728
-  validation-size: 268435456
-  check-val-every-n-epoch: 50
   batch-size: 131072
   one-cycle-steps: 4096000
   lr: "0.9e-3"
+  start_lambda: 1.0
+  end_lambda: 1.0
+  pow_exp: 2.2458593774318936
+  qp_asymmetry: 0.16123193074123665
+  w1: 3.4992759013258348
+  w2: 0.24990297747029686
   cdb-path: "/workspace/cdb/chess-20260702/data"
-  cdb-fraction: 1.0
+  cdb-fraction: 0.99
+  wld_filtered: False
+  random_fen_skipping: 0
+  early_fen_skipping: -1
+  simple_eval_skipping: -1
   <<: *model_config
 
 trainer: &trainer
@@ -123,3 +91,8 @@ training:
         repetitions: 1
         other_options:
           <<: *common_run_options
+          in_offset: 199.6164751319224
+          out_offset: 208.55835423042265
+          in_scaling: 288.6467157482683
+          out_scaling: 289.58605293609645
+        
