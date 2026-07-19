@@ -28,12 +28,21 @@ common_run_options: &common_run_options
   qp_asymmetry: 0.16123193074123665
   w1: 3.4992759013258348
   w2: 0.24990297747029686
+  pc-y0: -0.021286239983835456
+  pc-y1: 0.4630376436225087
+  pc-y2: 0.8119190849177433
+  pc-y3: 0.8432669372128858
+  pc-y4: 0.8307417849554223
   cdb-path: "/workspace/cdb/chess-20260702/data"
   cdb-fraction: 0.99
   wld_filtered: False
   random_fen_skipping: 0
   early_fen_skipping: -1
   simple_eval_skipping: -1
+  in_offset: 199.6164751319224
+  out_offset: 208.55835423042265
+  in_scaling: 288.6467157482683
+  out_scaling: 289.58605293609645
   <<: *model_config
 
 trainer: &trainer
@@ -71,7 +80,7 @@ testing:
       sha: b9008d08b9f375ef7810dc55da6ff223a3992cc2
     options:
       hash: 16
-      max_rounds: 5000
+      max_rounds: 10000
       tc: 10+0.1
   reference:
     code: *reference_code
@@ -91,8 +100,4 @@ training:
         repetitions: 1
         other_options:
           <<: *common_run_options
-          in_offset: 199.6164751319224
-          out_offset: 208.55835423042265
-          in_scaling: 288.6467157482683
-          out_scaling: 289.58605293609645
         
