@@ -100,8 +100,8 @@ advanced_stage_options: &advanced_stage_options
   end-lambda: 0.7401424425915776
 
 trainer: &trainer
-  owner: TonyCongqianWang
-  sha: 6cd6ed4e6de7a6bb260e60f1cde02464b3049212
+  owner: vondele
+  sha: eb6304f751d0f277a079af499bbfe65d12641470
 
 reference_code: &reference_code
   owner: official-stockfish
