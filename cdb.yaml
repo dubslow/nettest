@@ -28,6 +28,15 @@ common_run_options: &common_run_options
   qp_asymmetry: 0.16123193074123665
   w1: 3.4992759013258348
   w2: 0.24990297747029686
+  soft_early_fen_skipping: 55
+  ply_x1: 15
+  ply_x2: 25
+  ply_x3: 35
+  ply_x4: 45
+  ply_y1: 0.4995834610368314
+  ply_y2: 0.4755898062623219
+  ply_y3: 0.7960350956742267
+  ply_y4: 0.5268709998474687
   pc-y0: -0.021286239983835456
   pc-y1: 0.4630376436225087
   pc-y2: 0.8119190849177433
@@ -100,4 +109,5 @@ training:
         repetitions: 1
         other_options:
           <<: *common_run_options
+        
         
