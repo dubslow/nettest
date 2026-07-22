@@ -109,5 +109,3 @@ training:
         repetitions: 1
         other_options:
           <<: *common_run_options
-        
-        
