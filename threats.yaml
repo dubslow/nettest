@@ -64,7 +64,7 @@ common_run_options: &common_run_options
   check-val-every-n-epoch: 50
   batch-size: 131072
   <<: *model_config
-  factorized-weight-decay: 0.001
+  #factorized-weight-decay: 0.001
   random-fen-skipping: 10
   early-fen-skipping: 18
   soft-early-fen_skipping: 32
@@ -101,7 +101,7 @@ advanced_stage_options: &advanced_stage_options
 
 trainer: &trainer
   owner: vondele
-  sha: eb6304f751d0f277a079af499bbfe65d12641470
+  sha: 0ebf883f9f8bcb68fe895cba82e57ccf28e923a5
 
 reference_code: &reference_code
   owner: official-stockfish
