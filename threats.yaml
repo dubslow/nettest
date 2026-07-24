@@ -101,7 +101,7 @@ advanced_stage_options: &advanced_stage_options
 
 trainer: &trainer
   owner: vondele
-  sha: 0ebf883f9f8bcb68fe895cba82e57ccf28e923a5
+  sha: e2c04258fc522741800e6b1a8671bf5d573d5894
 
 reference_code: &reference_code
   owner: official-stockfish
