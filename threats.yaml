@@ -64,7 +64,7 @@ common_run_options: &common_run_options
   check-val-every-n-epoch: 50
   batch-size: 131072
   <<: *model_config
-  factorized-weight-decay: 0.001
+  #factorized-weight-decay: 0.001
   random-fen-skipping: 10
   early-fen-skipping: 18
   soft-early-fen_skipping: 32
@@ -100,17 +100,17 @@ advanced_stage_options: &advanced_stage_options
   end-lambda: 0.7401424425915776
 
 trainer: &trainer
-  owner: sscg13
-  sha: 8e85dbaf5bc695c1e9cf42863b5a2f7777acb064
+  owner: official-stockfish
+  sha: 26f8ff49dd4d30f26535d81517ef327a74578ee4
 
 reference_code: &reference_code
   owner: official-stockfish
-  sha: d5bbc6b67d3184fc39fa87a18596e77e92af990c
+  sha: f4bcd40409f94bd397a083c5d6243bac6dcc6d85
   target: profile-build
 
 testing_code: &testing_code
-  owner: sscg13
-  sha: 77399c0314ac7af6ad65f174557cac685926fb30
+  owner: official-stockfish
+  sha: f4bcd40409f94bd397a083c5d6243bac6dcc6d85
   target: profile-build
 
 # --- Grouped Structure Anchors for Redundancy Reduction ---
