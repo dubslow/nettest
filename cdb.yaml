@@ -56,7 +56,7 @@ common_run_options: &common_run_options
 
 trainer: &trainer
   owner: vondele
-  sha: 24f21286bfeb06e6ea60c37e27a0c763cadc6a2a
+  sha: 8b13e4eaad33a2852f0546f9060a982cbee110b2
 
 reference_code: &reference_code
   owner: official-stockfish
@@ -105,7 +105,7 @@ training:
       run:
         resume: none
         binpacks: *training_binpacks
-        max_epochs: 3600
+        max_epochs: 4800
         repetitions: 4
         other_options:
           <<: *common_run_options
