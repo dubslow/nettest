@@ -65,7 +65,7 @@ common_run_options: &common_run_options
   check-val-every-n-epoch: 50
   batch-size: 131072
   <<: *model_config
-  factorized-weight-decay: 0.001
+  #factorized-weight-decay: 0.001
   random-fen-skipping: 10
   early-fen-skipping: 18
   soft-early-fen_skipping: 32
