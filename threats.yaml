@@ -103,7 +103,7 @@ advanced_stage_options: &advanced_stage_options
 
 trainer: &trainer
   owner: official-stockfish
-  sha: 58b7931006b17327801b83e8e9044d0ae6b1287c
+  sha: 9f72946529c4187d3679014036cd22c3be419716
 
 reference_code: &reference_code
   owner: official-stockfish
