@@ -3,7 +3,7 @@ training_binpacks: &training_binpacks
   - vondele/rescored/tb5dtm.binpack
 
 model_config: &model_config
-  features: Full_Threats+HalfKAv2_hm^
+  features: Full_Threats+PP_3Wide+HalfKAv2_hm^
   l1: 1024
   l2: 32
 
@@ -60,7 +60,7 @@ trainer: &trainer
 
 reference_code: &reference_code
   owner: official-stockfish
-  sha: d5bbc6b67d3184fc39fa87a18596e77e92af990c
+  sha: 23cf5d827388e84d4389b40025ef401db4925f25
   target: profile-build
 
 testing_code: &testing_code
