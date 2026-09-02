@@ -157,8 +157,8 @@ testing:
     code: *testing_code
 
 training_length_options: &training_length_options
-  one-cycle-steps: 4608000
-  lambda-schedule-steps: 4352000
+  one-cycle-steps: 5108000
+  lambda-schedule-steps: 5052000
   lr: "0.4e-3"
 
 training:
@@ -168,7 +168,7 @@ training:
       run:
         resume: none
         binpacks: *training_binpacks
-        max_epochs: 4000
+        max_epochs: 4500
         repetitions: 3
         other_options:
           <<: [*training_length_options, *common_run_options]
@@ -179,7 +179,7 @@ training:
       run:
         <<: *common_run_resume_ckpt
         binpacks: *training_binpacks
-        max_epochs: 4250
+        max_epochs: 4750
         other_options:
           <<: [*training_length_options, *common_run_options]
           batch_size: 65536
